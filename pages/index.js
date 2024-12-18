@@ -1,114 +1,110 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import BlogCard from '../components/index/BlogCard';
+import AdminButton from '../components/index/AdminButton';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function Home() {
+export default function Home({ posts }) {
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="container mx-auto py-8">
+      <h1 className="text-4xl font-bold text-center mb-8">Blog</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div className="mt-12 text-right mb-5">
+        <AdminButton />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <BlogCard key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
+}
+
+
+export async function getServerSideProps() {
+  const posts = [
+    {
+      id: '1',
+      title: 'A história de um homem que encontrou a felicidade',
+      summary: 'Era uma vez um homem chamado João que vivia uma vida infeliz. Ele tinha um bom emprego, uma família amorosa e uma casa confortável, mas ele não conseguia se sentir satisfeito.',
+      image: '/images/blog1.jpg',
+      author: 'João Silva',
+      authorPhoto: '/images/author1.jpg',
+      date: '14 de dezembro de 2024',
+    },
+    {
+      id: '2',
+      title: 'A Escritora Bloqueada',
+      summary: 'Uma escritora famosa, mas infeliz',
+      image: '/images/blog2.jpg',
+      author: 'Marcio Vanlentin',
+      authorPhoto: '/images/author2.jpg',
+      date: '13 de dezembro de 2024',
+    },
+    {
+      id: '3',
+      title: 'O Empresário Exausto',
+      summary: 'Um CEO de sucesso, sempre correndo contra o tempo',
+      image: '/images/blog3.jpg',
+      author: 'Thiago Alves',
+      authorPhoto: '/images/author3.jpg',
+      date: '14 de dezembro de 2024',
+    },
+    {
+      id: '4',
+      title: 'A Atleta Frustrada',
+      summary: 'Uma atleta olímpica, após uma lesão grave',
+      image: '/images/blog4.jpg',
+      author: 'Matheus Augusto',
+      authorPhoto: '/images/author4.jpg',
+      date: '13 de dezembro de 2024',
+    },
+    {
+      id: '5',
+      title: 'O Médico Desiludido',
+      summary: 'Um médico renomado, desiludido com a rotina hospitalar',
+      image: '/images/blog5.jpg',
+      author: 'Manoel Silva',
+      authorPhoto: '/images/author5.jpg',
+      date: '14 de dezembro de 2024',
+    },
+    {
+      id: '6',
+      title: 'A Mãe Sobrecarregada',
+      summary: 'Uma mãe de três filhos, sempre cansada e estressada',
+      image: '/images/blog6.jpg',
+      author: 'Emanoel Pinheiro',
+      authorPhoto: '/images/author6.jpg',
+      date: '13 de dezembro de 2024',
+    },
+    {
+      id: '7',
+      title: 'O Cantor Solitário',
+      summary: 'Um cantor famoso, que se sente vazio apesar do sucesso',
+      image: '/images/blog7.jpg',
+      author: 'Pedro Junior',
+      authorPhoto: '/images/author7.jpg',
+      date: '14 de dezembro de 2024',
+    },
+    {
+      id: '8',
+      title: 'O Professor Desmotivado',
+      summary: 'Um professor universitário, desmotivado com a falta de interesse dos alunos',
+      image: '/images/blog8.jpg',
+      author: 'Julio Cesar',
+      authorPhoto: '/images/author8.jpg',
+      date: '13 de dezembro de 2024',
+    },
+    {
+      id: '9',
+      title: 'O Artista Desprezado',
+      summary: 'Um artista plástico, que nunca conseguiu vender suas obras',
+      image: '/images/blog9.jpg',
+      author: 'Caio da Costa',
+      authorPhoto: '/images/author9.jpg',
+      date: '14 de dezembro de 2024',
+    },
+  ];
+
+  return { props: { posts } };
 }

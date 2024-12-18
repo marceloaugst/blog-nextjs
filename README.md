@@ -1,40 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Blog App
 
-## Getting Started
+Este é um projeto de blog simples desenvolvido com **Next.js**. Ele permite exibir postagens, visualizar detalhes individuais e gerenciar conteúdos de maneira intuitiva.
 
-First, run the development server:
+## Funcionalidades
+- Listagem de postagens.
+- Detalhes completos de cada postagem.
+- Interface administrativa para criar novos posts.
 
-```bash
+---
+
+## Configuração do Ambiente
+
+### 1. Pré-requisitos
+- **Node.js**: Certifique-se de ter o [Node.js](https://nodejs.org/) instalado na versão 16 ou superior.
+- **npm** ou **yarn**: Gerenciador de pacotes.
+
+### Instale as dependências:
+
+npm install
+# ou
+yarn
+
+### Inicie o servidor de desenvolvimento:
+
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Acesse o projeto no navegador:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Estrutura do Projeto
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+blog/
+ components/
+    ─ index/              # Componentes para a página inicial
+    ─ PostHeader.js       # Cabeçalho da página de detalhes do post
+    ─ PostContent.js      # Corpo do conteúdo do post
+    mock/
+    - posts.js            # Dados mockados de posts
+    pages/
+    ─ index.js            # Página inicial (listagem de posts)
+    ─ post/[id].js        # Página dinâmica para detalhes de post
+    public/
+    ─ images/             # Imagens dos posts e autores
+    styles/
+    ─ globals.css         # Estilos globais
+README.md               # Documentação principal
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Guia de Uso
+## Listagem de Postagens
+Na página inicial, as postagens são exibidas em forma de cards.
 
-## Learn More
+Página de Detalhes
+Cada postagem possui uma página dedicada, acessada pela URL /post/[id].
+Exibe:
+Título
+Autor e data
+Imagem destacada
+Conteúdo completo
+Adicionar Novos Posts
+Acesse a interface administrativa clicando em "Adicionar Nova Postagem".
+Preencha os campos do formulário e clique em "Salvar".
 
-To learn more about Next.js, take a look at the following resources:
+### Tecnologias Usadas
+Next.js: Framework para aplicações React com renderização do lado do servidor.
+Tailwind CSS: Biblioteca de CSS para estilização rápida e eficiente.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Testes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Os testes cobrem as principais funcionalidades do projeto, incluindo renderização de componentes e navegação entre páginas.
 
-## Deploy on Vercel
+## Rodando os Testes
+Execute o comando abaixo para rodar todos os testes:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm test
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## Gerando Relatório de Cobertura
+Para verificar a cobertura dos testes:
+npm run test:coverage
+
+
+### 2. Instalação
+1. Clone o repositório:
+   git clone https://github.com/marceloaugst/blog
+   cd blog
