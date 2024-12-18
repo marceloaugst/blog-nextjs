@@ -84,5 +84,5 @@ npm run test:coverage
 
 ### 2. Instalação
 1. Clone o repositório:
-   git clone https://github.com/marceloaugst/blog
+   git clone https://github.com/marceloaugst/blog-nextjs
    cd blog
